@@ -15,4 +15,12 @@ class _$YTVideosService extends YTVideosService {
 
   @override
   final definitionType = YTVideosService;
+
+  @override
+  Future<Response<dynamic>> getVideos() {
+    final $url =
+        '/playlistItems?part=snippet&maxResults=50&playlistId=PL1qWrl23uHTjajQcozlfgSkEtNWahEpKG&key=AIzaSyAIT6Q-MRTEVdqAkMtioQQeIMogIyibSiI';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
 }
