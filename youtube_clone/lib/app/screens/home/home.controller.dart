@@ -20,7 +20,6 @@ class HomeController with ChangeNotifier {
 
   Widget getTab() {
     return _tabs[_selectedIndex != 0 ? 1 : 0];
-    notifyListeners();
   }
 
   setSelectedIndex(int value) {

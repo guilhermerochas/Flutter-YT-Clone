@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(right: 10, left: 5),
                 child: CircleAvatar(
+                  radius: 17,
                   foregroundColor: Colors.blue,
                   backgroundColor: Colors.blue,
                 ),

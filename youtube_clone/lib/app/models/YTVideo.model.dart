@@ -42,8 +42,10 @@ class YTVideoModel {
     //int videos = int.parse(data['pageInfo']['totalResults']);
     List<YTVideoModel> list = [];
     var format = DateFormat('yyyy-MM-ddTH:mm:ssZ');
+    int count =
+        int.tryParse(data['pageInfo']['totalResults'].toString()).toInt();
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < count; i++) {
       list.add(
         YTVideoModel(
           title: data["items"][i]["snippet"]["title"],
