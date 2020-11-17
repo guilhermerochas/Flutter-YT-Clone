@@ -24,6 +24,7 @@ class HomeTabController with ChangeNotifier {
       if (data.isSuccessful) {
         _videos = YTVideoModel.fromJson(data.body.toString());
         print("Success");
+        notifyListeners();
       } else {
         print("Error: ${data.error}");
         print('Status Code: ${data.statusCode}');
