@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:youtube_clone/app/models/YTVideo.model.dart';
 import 'package:youtube_clone/app/services/ytvideos.service.dart';
+import '../../../../models/YTVideo.model.dart';
 
 class HomeTabController with ChangeNotifier {
   ChopperClient _client;
@@ -9,28 +10,26 @@ class HomeTabController with ChangeNotifier {
 
   List<YTVideoModel> get videos => _videos;
 
-  createClient() {
+  init() {
     _client = ChopperClient(
-      baseUrl: "https://www.googleapis.com/youtube/v3",
+      baseUrl: "https://www.googleapis.com/youtube/v",
       services: [
         YTVideosService.create(),
       ],
     );
   }
 
-  getData() async {
+  Future<List<YTVideoModel>> getData() async {
     try {
       var data = await _client.getService<YTVideosService>().getVideos();
       if (data.isSuccessful) {
         _videos = YTVideoModel.fromJson(data.body.toString());
-        print("Success");
-        notifyListeners();
+        return _videos;
       } else {
-        print("Error: ${data.error}");
-        print('Status Code: ${data.statusCode}');
+        throw ("Erro: ${data.error}");
       }
     } catch (e) {
-      print(e.toString());
+      throw (e);
     }
   }
 }
